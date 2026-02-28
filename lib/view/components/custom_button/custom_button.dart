@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../utils/app_colors/app_colors.dart';
 import '../custom_text/custom_text.dart';
 
@@ -15,6 +14,7 @@ class CustomButton extends StatelessWidget {
     this.marginVertical = 0,
     this.marginHorizontal = 0,
     this.fillColor = AppColors.primary,
+    this.gradient,
     this.textColor = AppColors.white,
     this.isBorder = false,
     this.fontSize,
@@ -23,11 +23,13 @@ class CustomButton extends StatelessWidget {
     this.imageSrc,
     this.imageSize,
     this.imageSpacing = 8,
+    this.boxShadow,
   });
 
   final double height;
   final double? width;
   final Color? fillColor;
+  final Gradient? gradient;
   final Color textColor;
   final VoidCallback onTap;
   final String title;
@@ -40,6 +42,7 @@ class CustomButton extends StatelessWidget {
   final String? imageSrc;
   final double? imageSize;
   final double imageSpacing;
+  final List<BoxShadow>? boxShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,9 @@ class CustomButton extends StatelessWidget {
               ? Border.all(color: textColor, width: borderWidth ?? .5)
               : null,
           borderRadius: BorderRadius.circular(borderRadius ?? 10),
-          color: fillColor,
+          gradient: gradient,
+          color: gradient == null ? fillColor : null,
+          boxShadow: boxShadow,
         ),
         child: imageSrc != null
             ? Row(
