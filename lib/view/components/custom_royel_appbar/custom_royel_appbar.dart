@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-import 'package:counta_flutter_app/view/components/custom_image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/app_colors/app_colors.dart';
+import '../custom_image/custom_image.dart';
 import '../custom_text/custom_text.dart';
 
 class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
