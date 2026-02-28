@@ -15,6 +15,12 @@ class AppStrings {
   static const String signUp = "Don't have an account? ";
   static const String signUpForFree = "Sign up for free";
   static const String continueWith = "OR CONTINUE WITH";
+  static const String signUpDes = "Join the challenge and level up your life.";
+  static const String fullName = "FULL NAME";
+  static const String fullNameHints = "Enter Your Full Name";
+  static const String getStarted = "Get Started →";
+  static const String alreadyHaveAccount = "Already have an account? ";
+  static const String loginBtnTxt = "Log in";
 
 
 
