@@ -1,4 +1,3 @@
-// lib/view/screen/profile/view/profile_view.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,8 +25,6 @@ class ProfileScreen extends StatelessWidget {
         rightIcon: null,
         showAddButton: false,
         rightOnTap: () {},
-        // settings icon via custom leading override not possible,
-        // so we pass showAddButton=false and handle settings below
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -35,12 +32,10 @@ class ProfileScreen extends StatelessWidget {
           children: [
             SizedBox(height: 8.h),
 
-            // ── Avatar ──
             _AvatarSection(),
 
             SizedBox(height: 16.h),
 
-            // Name & subtitle
             CustomText(
               text: 'Alex Rivers',
               fontSize: 24,
@@ -59,17 +54,14 @@ class ProfileScreen extends StatelessWidget {
 
             SizedBox(height: 24.h),
 
-            // ── Rewards Card ──
             _RewardsCard(),
 
             SizedBox(height: 28.h),
 
-            // ── Milestone Badges ──
             _MilestoneBadges(),
 
             SizedBox(height: 24.h),
 
-            // ── Menu Items ──
             _MenuItem(
               icon: Icons.person_outline_rounded,
               label: 'Personal Information',
@@ -90,7 +82,6 @@ class ProfileScreen extends StatelessWidget {
 
             SizedBox(height: 28.h),
 
-            // ── Logout ──
             GestureDetector(
               onTap: () => Get.offAllNamed(AppRoutes.login),
               child: Container(
@@ -129,7 +120,6 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-// ── Avatar with glow ──
 class _AvatarSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -189,7 +179,6 @@ class _AvatarSection extends StatelessWidget {
   }
 }
 
-// ── Rewards Card ──
 class _RewardsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -253,7 +242,6 @@ class _RewardsCard extends StatelessWidget {
   }
 }
 
-// ── Milestone Badges ──
 class _MilestoneBadges extends StatelessWidget {
   static const _badges = [
     _BadgeData('🔥', Color(0xFF8B5E00), Color(0xFFD4A017), '30 Day Streak'),
@@ -351,7 +339,7 @@ class _BadgeData {
   const _BadgeData(this.emoji, this.bgColor, this.ringColor, this.label);
 }
 
-// ── Menu Item ──
+
 class _MenuItem extends StatelessWidget {
   const _MenuItem({required this.icon, required this.label, required this.onTap});
   final IconData icon;
