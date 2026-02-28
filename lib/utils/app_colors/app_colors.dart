@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:flutter/material.dart';
 class AppColors {
   static const Color primary = Color(0xFF246BFD);
   static const Color black = Color(0xff0E0E0E);
@@ -22,4 +22,30 @@ class AppColors {
   static const Color lightWhite = Color(0xffEEF6FF);
   static const Color lightBlue = Color(0xff57b2f4);
   static const Color orange = Color(0xffFF9800);
+
+  //Habit app colors
+
+  static const Color scaffoldBg = Color(0xFF0D1B2A); // Dark Background
+
+  // Gradients
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [Color(0xFF4158D0), Color(0xFFC850C0)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient orangeGradient = LinearGradient(
+    colors: [Color(0xFFFF9A8B), Color(0xFFFF6A88)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient tealGradient = LinearGradient(
+    colors: [Color(0xFF00DBDE), Color(0xFFFC00FF)], // Custom teal mix
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static Color glassColor = Colors.white.withOpacity(0.1);
+  static Color glassBorder = Colors.white.withOpacity(0.2);
 }
