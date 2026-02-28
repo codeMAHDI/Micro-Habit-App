@@ -46,6 +46,7 @@ class CreateChallengeView extends StatelessWidget {
                           textEditingController: titleEditController,
                           hintText: 'e.g., Morning Yoga Flow',
                           keyboardType: TextInputType.text,
+                          hintStyle: TextStyle(color: AppColors.black.withOpacity(0.5), fontSize: 14),
                           fillColor: const Color(0xFFF0F3FA),
                           fieldBorderRadius: 14,
                           fieldBorderColor: Colors.transparent,
