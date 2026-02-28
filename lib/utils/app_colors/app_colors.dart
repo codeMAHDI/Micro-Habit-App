@@ -24,7 +24,6 @@ class AppColors {
   static const Color orange = Color(0xffFF9800);
 
   //Habit app colors
-
   static const Color scaffoldBg = Color(0xFF0D1B2A); // Dark Background
 
   // Gradients

@@ -22,8 +22,6 @@ class AppStrings {
   static const String alreadyHaveAccount = "Already have an account? ";
   static const String loginBtnTxt = "Log in";
 
-
-
 }
 
 

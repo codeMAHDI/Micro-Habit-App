@@ -43,21 +43,7 @@ class SharePrefsHelper {
       debugPrint("Warning: Trying to set a null value for key: $key");
     }
   }
-/*  static Future setString(String key, value) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString(key, value);
-  }*/
 
-/*  static Future<void> setString(String key, String? value) async {
-   // SharedPreferences preferences = await SharedPreferences.getInstance();
-   // await preferences.setString(key, value!);
-    if (value != null) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(key, value);
-    } else {
-      print("Warning: Trying to set a null value for key: $key");
-    }
-  }*/
 
   static Future<bool> setListOfString(String key, List<String> value) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -84,36 +70,6 @@ class SharePrefsHelper {
     return preferences.remove(key);
   }
 
-// //===========================Save user===================
-// // Save user locally
-//   static Future<void> saveUserLocally(String email, String phone) async {
-//     final prefs = await SharedPreferences.getInstance();
-//
-//     List<String> emails = prefs.getStringList("emails") ?? [];
-//     List<String> phones = prefs.getStringList("phones") ?? [];
-//
-//     if (!emails.contains(email)) emails.add(email);
-//     if (!phones.contains(phone)) phones.add(phone);
-//
-//     await prefs.setStringList("emails", emails);
-//     await prefs.setStringList("phones", phones);
-//   }
-//
-// // Check email exists
-//   static Future<bool> isEmailExists(String email) async {
-//     final prefs = await SharedPreferences.getInstance();
-//     List<String> emails = prefs.getStringList("emails") ?? [];
-//     return emails.contains(email.trim());
-//   }
-//
-// // Check phone exists
-//   static Future<bool> isPhoneExists(String phone) async {
-//     final prefs = await SharedPreferences.getInstance();
-//     List<String> phones = prefs.getStringList("phones") ?? [];
-//     return phones.contains(phone.trim());
-//   }
-
-//=========================== Save user locally ===================
   static Future<void> saveUserLocally(String email, String phone) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -130,7 +86,6 @@ class SharePrefsHelper {
     await prefs.setStringList("emails", emails);
     await prefs.setStringList("phones", phones);
 
-    // 👉 current user হিসেবে set করো
     await prefs.setString("currentUserEmail", email.trim());
     await prefs.setString("currentUserPhone", phone.trim());
   }
@@ -141,12 +96,10 @@ class SharePrefsHelper {
     List<String> emails = prefs.getStringList("emails") ?? [];
     String? currentUserEmail = prefs.getString("currentUserEmail");
 
-    // যদি current user হয় → error না
     if (currentUserEmail != null && currentUserEmail == email.trim()) {
       return false;
     }
 
-    // অন্য কারো হলে error
     return emails.contains(email.trim());
   }
 
@@ -179,11 +132,7 @@ class SharePrefsHelper {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setString(key, value);
   }
-/*  // Get a string value
-  static Future<String?> getString(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key);
-  }*/
+
 
 }
 

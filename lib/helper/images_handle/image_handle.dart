@@ -8,7 +8,7 @@ class ImageHandler{
     }
 
     if (url.startsWith('http')) {
-      return url; // If the URL starts with 'http', return as is
+      return url;
     } else {
       return ApiUrl.imageUrl + url;
     }

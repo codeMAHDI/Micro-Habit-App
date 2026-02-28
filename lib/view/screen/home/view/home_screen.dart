@@ -30,7 +30,7 @@ class HomeDashboardScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header (white text on blue bg)
+                // Header
                 HomeHeader(
                   greeting: 'Good Morning,',
                   userName: 'Alex Rivera',
@@ -49,7 +49,7 @@ class HomeDashboardScreen extends StatelessWidget {
 
                 SizedBox(height: 12.h),
 
-                // Challenge Card floats over the gradient
+                // Challenge Card
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: ActiveChallengeCard(
