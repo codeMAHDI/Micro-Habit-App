@@ -6,7 +6,7 @@ import '../../view/screen/home/view/home_alternative_screen.dart';
 import '../../view/screen/home/view/home_screen.dart';
 import '../../view/screen/home/view/main_screen.dart';
 import '../../view/screen/profile/view/profile_view.dart';
-import '../../view/screen/splash_screen/splash_screen.dart';
+import '../../view/screen/splash_screen/view/splash_screen.dart';
 import '../../view/screen/stats/view/stats_view.dart';
 
 class AppRoutes {
