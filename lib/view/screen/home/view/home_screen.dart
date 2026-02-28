@@ -1,6 +1,10 @@
-// lib/view/screen/home/view/home_screen.dart
 import 'package:flutter/material.dart';
-import '../../../../utils/app_colors/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../widgets/challenge_card.dart';
+import '../widgets/home_header.dart';
+import '../widgets/quick_habits_section.dart';
+import '../widgets/stats_row.dart';
 
 class HomeDashboardScreen extends StatelessWidget {
   const HomeDashboardScreen({super.key});
@@ -8,84 +12,89 @@ class HomeDashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF2F5FA),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            // Header Section
             Container(
-              padding: const EdgeInsets.fromLTRB(24, 60, 24, 30),
-              decoration: BoxDecoration(
-                color: Colors.grey[50],
-                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+              height: 240.h,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFF4A90E2), Color(0xFF63B3ED)],
+                ),
               ),
-              child: Row(
-                children: [
-                  const CircleAvatar(radius: 25, backgroundImage: NetworkImage('https://via.placeholder.com/150')),
-                  const SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("WELCOME BACK", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                      Text("Alex Rivera", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            ),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header (white text on blue bg)
+                HomeHeader(
+                  greeting: 'Good Morning,',
+                  userName: 'Alex Rivera',
+                  backgroundColor: Colors.transparent,
+                  greetingColor: Colors.white.withOpacity(0.85),
+                  nameColor: Colors.white,
+                  notificationIconColor: Colors.white,
+                  notificationBgColor: Colors.white.withOpacity(0.2),
+                  avatarWidget: CircleAvatar(
+                    radius: 24.r,
+                    backgroundColor: Colors.white.withOpacity(0.25),
+                    child: Icon(Icons.person_outline,
+                        color: Colors.white, size: 24.sp),
+                  ),
+                ),
+
+                SizedBox(height: 12.h),
+
+                // Challenge Card floats over the gradient
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: ActiveChallengeCard(
+                    onCompleteTap: () => Get.back(),
+                  ),
+                ),
+
+                SizedBox(height: 32.h),
+
+                // Stats Row
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: const StatsRow(streakCount: 12, pointsCount: 850),
+                ),
+
+                SizedBox(height: 32.h),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: QuickHabitsSection(
+                    onViewAll: () {},
+                    items: const [
+                      QuickHabitItem(
+                        icon: Icons.menu_book_rounded,
+                        iconBgColor: Color(0xFFF3E8FF),
+                        iconColor: Color(0xFF9B59B6),
+                        title: 'Read 10 Pages',
+                        subtitle: 'Not started yet',
+                      ),
+                      QuickHabitItem(
+                        icon: Icons.water_drop_outlined,
+                        iconBgColor: Color(0xFFE3F8F5),
+                        iconColor: Color(0xFF00BCD4),
+                        title: 'Hydration Goal',
+                        subtitle: '1.5L / 2L today',
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ),
-
-            // Streak Card
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE0F7F9),
-                  borderRadius: BorderRadius.circular(20),
                 ),
-                child: Row(
-                  children: const [
-                    Icon(Icons.flash_on, color: Colors.cyan),
-                    SizedBox(width: 10),
-                    Text("14 Day Streak", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                  ],
-                ),
-              ),
-            ),
 
-            // Daily Progress Grid
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                children: [
-                  Expanded(child: _buildProgressCard("Hydration", "75%", Colors.cyan)),
-                  const SizedBox(width: 20),
-                  Expanded(child: _buildProgressCard("Steps", "40%", Colors.teal)),
-                ],
-              ),
+                SizedBox(height: 100.h),
+              ],
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildProgressCard(String title, String value, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)],
-      ),
-      child: Column(
-        children: [
-          CircularProgressIndicator(value: 0.7, color: color, strokeWidth: 8),
-          const SizedBox(height: 15),
-          Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(value, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.bold)),
-        ],
       ),
     );
   }
