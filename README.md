@@ -48,7 +48,7 @@ Personalized profile management powered by rewards.
 - **Architecture Pattern:** MVVM (Model-View-ViewModel)
 - **UI/UX:** Premium Glassmorphism design with soft gradients and smooth micro-interactions
 - **Responsiveness:** Multi-device support using `flutter_screenutil`
-- **Animations:** Lottie animations
+
 
 ---
 
