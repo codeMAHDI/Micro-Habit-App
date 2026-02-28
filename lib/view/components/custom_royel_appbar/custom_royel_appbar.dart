@@ -9,42 +9,99 @@ class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? rightIcon;
   final void Function()? rightOnTap;
   final bool? leftIcon;
-  final bool showAddButton; // New parameter
-
+  final bool showAddButton;
+  final bool isDark;
+  final bool showShareIcon;
   const CustomRoyelAppbar({
     super.key,
     this.titleName,
     this.rightIcon,
     this.rightOnTap,
     this.leftIcon = false,
-    this.showAddButton = false, // Default false
+    this.showAddButton = false,
+    this.isDark = false,
+    this.showShareIcon = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final titleColor = isDark ? Colors.white : AppColors.primary;
+    final iconColor = isDark ? Colors.white : Colors.black87;
+    final bgColor =
+    isDark ? const Color(0xFF0D1B2E) : Colors.transparent;
+
     return AppBar(
-      toolbarHeight: 80,
+      toolbarHeight: 60,
       elevation: 0,
-      foregroundColor: Colors.transparent,
-      centerTitle: true,
       scrolledUnderElevation: 0,
+      centerTitle: true,
+      backgroundColor: bgColor,
+      foregroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+
+      leading: leftIcon == true
+          ? GestureDetector(
+        onTap: () => Navigator.of(context).maybePop(),
+        child: Container(
+          margin: EdgeInsets.only(left: 16.w),
+          width: 36.w,
+          height: 36.h,
+          decoration: BoxDecoration(
+            color: isDark
+                ? Colors.white.withOpacity(0.1)
+                : Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Icon(Icons.arrow_back_ios_new_rounded,
+              color: iconColor, size: 16.sp),
+        ),
+      )
+          : null,
+
+      title: CustomText(
+        text: titleName ?? '',
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: titleColor,
+        textAlign: TextAlign.center,
+      ),
+
       actions: [
-        // Right icon (if provided)
-        if (rightIcon != null)
+        // Share icon
+        if (showShareIcon)
+          GestureDetector(
+            onTap: rightOnTap,
+            child: Container(
+              margin: EdgeInsets.only(right: 16.w),
+              width: 36.w,
+              height: 36.h,
+              decoration: BoxDecoration(
+                color: isDark
+                    ? Colors.white.withOpacity(0.1)
+                    : Colors.grey.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              child: Icon(Icons.share_rounded,
+                  color: iconColor, size: 18.sp),
+            ),
+          ),
+
+        // Right image icon
+        if (rightIcon != null && !showShareIcon)
           IconButton(
             onPressed: rightOnTap,
             icon: CustomImage(
               imageSrc: rightIcon!,
               height: 32,
               width: 32,
-              imageColor: AppColors.white,
+              imageColor: isDark ? Colors.white : AppColors.white,
             ),
           ),
 
-        // Add button (if showAddButton is true)
+        // Add button
         if (showAddButton)
           Padding(
-            padding: const EdgeInsets.only(right: 22),
+            padding: EdgeInsets.only(right: 16.w),
             child: Container(
               width: 40,
               height: 40,
@@ -54,24 +111,12 @@ class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
               child: IconButton(
                 onPressed: rightOnTap,
-                icon: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 24,
-                ),
+                icon: const Icon(Icons.add, color: Colors.white, size: 24),
                 padding: EdgeInsets.zero,
               ),
             ),
           ),
       ],
-      backgroundColor: Colors.transparent,
-      leading: leftIcon == true ? BackButton(color: Colors.black) : null,
-      title: CustomText(
-        text: titleName ?? "",
-        fontSize: 24.w,
-        fontWeight: FontWeight.w700,
-        color: AppColors.primary,
-      ),
     );
   }
 
